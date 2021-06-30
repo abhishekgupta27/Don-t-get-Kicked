@@ -1,0 +1,78 @@
+[System]
+Name='Fuzzy3'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='VehicleAge'
+Range=[0 10]
+NumMFs=5
+MF1='age1':'trimf',[-0.5 0 2.5]
+MF2='age2':'trimf',[1.5 3 4.5]
+MF3='age3':'trimf',[3.5 5 6.5]
+MF4='age4':'trimf',[5.5 7 8.5]
+MF5='age5':'trimf',[7.5 10 12.5]
+
+[Input2]
+Name='VehOdo'
+Range=[8 120]
+NumMFs=5
+MF1='reading1':'trapmf',[-17.2 8 20 50]
+MF2='reading2':'trapmf',[30 45 55 70]
+MF3='reading3':'trapmf',[50 65 75 90]
+MF4='reading4':'trapmf',[70 85 95 110]
+MF5='reading5':'trapmf',[100 115 122.8 145.2]
+
+[Input3]
+Name='ARCP'
+Range=[0 20]
+NumMFs=5
+MF1='arcp1':'trimf',[-5 0 4.5]
+MF2='arcp2':'trimf',[1.5 4.5 7.5]
+MF3='arcp3':'trimf',[4.5 7 9.5]
+MF4='arcp4':'trimf',[6.5 9 11.5]
+MF5='arcp5':'trimf',[10 20 25]
+
+[Input4]
+Name='VehBCost'
+Range=[15 150]
+NumMFs=5
+MF1='vcost1':'trapmf',[-5.172 0 20 60]
+MF2='vcost2':'trapmf',[45 55 65 75]
+MF3='vcost3':'trapmf',[65 70 80 85]
+MF4='vcost4':'trapmf',[75 85 95 105]
+MF5='vcost5':'trapmf',[100 450 460 600]
+
+[Input5]
+Name='WarrantyCost'
+Range=[40 300]
+NumMFs=5
+MF1='wcost1':'trimf',[40 65 90]
+MF2='wcost2':'trimf',[70 105 140]
+MF3='wcost3':'trimf',[120 160 200]
+MF4='wcost4':'trimf',[180 220 260]
+MF5='wcost5':'trimf',[235 750 7000]
+
+[Output1]
+Name='IsBadBuy'
+Range=[0 1]
+NumMFs=2
+MF1='No':'trapmf',[-0.9 -0.1 0.1 0.9]
+MF2='Yes':'trapmf',[0.1 0.9 1.1 1.9]
+
+[Rules]
+1 0 0 2 1, 1 (1) : 1
+2 1 0 4 0, 2 (1) : 1
+2 0 0 3 4, 2 (1) : 1
+3 3 1 1 0, 1 (1) : 1
+3 3 3 1 4, 2 (1) : 1
+3 3 0 3 4, 1 (1) : 1
+3 3 0 3 0, 1 (1) : 1
